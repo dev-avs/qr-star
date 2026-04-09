@@ -9,6 +9,10 @@ async function request(path: string, init: RequestInit = {}): Promise<APIRespons
   try {
     const res = await fetch(`${BASE_URL}${path}`, {
       ...init,
+      headers: {
+        'ngrok-skip-browser-warning': 'true',
+        ...init.headers,
+      },
     })
     const data = (await res.json()) as APIResponse
     return data
